@@ -2,6 +2,23 @@ package java.interview.thread.programs;
 
 import java.util.LinkedList;
 
+/**
+ * @author Viyaan
+ * 
+ *         The producer-consumer problem (also known as the bounded-buffer
+ *         problem) is a classic Java Example of a multi-process synchronization
+ *         problem.
+ * 
+ *         The problem describes two processes, the producer and the consumer,
+ *         who share a common, fixed-size buffer used as a queue or linkedlist.
+ *         The producer’s job is to generate a piece of data, put it into the
+ *         buffer and start again.
+ * 
+ *         At the same time, the consumer is consuming the data (i.e., removing
+ *         it from the buffer) one piece at a time. The problem is to make sure
+ *         that the producer won’t try to add data into the buffer if it’s full
+ *
+ */
 public class ProducerConsumerMultiThread {
 	public static void main(String[] args) throws InterruptedException {
 		ProducerConsumerMultiThread.PCBuffer pc = new ProducerConsumerMultiThread().new PCBuffer();
