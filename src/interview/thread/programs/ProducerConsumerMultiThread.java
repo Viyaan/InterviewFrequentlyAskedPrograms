@@ -1,4 +1,4 @@
-package java.interview.thread.programs;
+package interview.thread.programs;
 
 import java.util.LinkedList;
 
