@@ -11,8 +11,20 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * @author Viyaan
+ * 
+ *         Our task is to sort the hashmap according to values.
+ * 
+ *         Expected output :
+ * 
+ *         {Java2Novice=2, java=20, MAC=26, C++=45, Unix=67, Why this
+ *         kolavari=93}
+ *
+ * 
+ */
 public class SortMapOnValue {
-	
+
 	public static void main(String[] args) {
 		Map<String, Integer> unsortMap = new HashMap<String, Integer>();
 		unsortMap.put("java", 20);
@@ -23,20 +35,22 @@ public class SortMapOnValue {
 		unsortMap.put("Why this kolavari", 93);
 		Set<Entry<String, Integer>> set = unsortMap.entrySet();
 		List<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(set);
-		
+
 		list.sort(new Comparator<Map.Entry<String, Integer>>() {
 			public int compare(Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
 				return (o1.getValue()).compareTo(o2.getValue());
 			}
 		});
+		HashMap<String, Integer> sortedByValueJava5 = new LinkedHashMap<String, Integer>();
 		for (Map.Entry<String, Integer> entry : list) {
-			System.out.println(entry.getKey() + " ==== " + entry.getValue());
+			sortedByValueJava5.put(entry.getKey(), entry.getValue());
 		}
+		System.out.println(sortedByValueJava5);
 		/**************************** Java 8 **************************************/
-		Map<String, Integer> sortedByValue = unsortMap.entrySet().stream()
+		Map<String, Integer> sortedByValueJava8 = unsortMap.entrySet().stream()
 				.sorted(Map.Entry.comparingByValue(Comparator.naturalOrder())).collect(Collectors.toMap(
 						Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
-		System.out.println(sortedByValue);
+		System.out.println(sortedByValueJava8);
 	}
 
 }
