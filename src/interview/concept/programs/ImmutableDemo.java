@@ -3,6 +3,22 @@ package interview.concept.programs;
 import java.util.Arrays;
 import java.util.Date;
 
+/**
+ * To create an immutable class following steps should be followed:<br>
+ * 1. Create a final class. <br>
+ * 2. Set the values of properties using constructor only.<br>
+ * 3. Make the properties of the class final and private. <br>
+ * 4. Do not provide any setters for these properties. <br>
+ * 5. If the instance fields include references to mutable objects, don't allow
+ * those objects to be changed: <br>
+ * 6. Don't provide methods that modify the mutable objects. <br>
+ * 7. Don't share references to the mutable objects. Never store references to
+ * external, mutable objects passed to the constructor; if necessary, create
+ * copies, and store references to the copies. Similarly, create copies of your
+ * internal mutable objects when necessary to avoid returning the originals in
+ * your method
+ *
+ */
 public class ImmutableDemo {
 
 	public static void main(String[] args) {
