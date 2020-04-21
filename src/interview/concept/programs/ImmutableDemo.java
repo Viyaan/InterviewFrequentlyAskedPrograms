@@ -33,7 +33,10 @@ public class ImmutableDemo {
 	}
 }
 
+//The class is final so we cannot create the subclass.
 final class ImmutableClass {
+	// The instance variable of the class is final i.e. we cannot change the value
+	// of it after creating an object.
 	private final String a;
 	private int[] myArray;
 	private final Date dateObj;
@@ -45,6 +48,7 @@ final class ImmutableClass {
 		this.dateObj = new Date(newDate.getTime());
 	}
 
+//There is no setter methods i.e. we have no option to change the value of the instance variable.
 	public String getA() {
 		return a;
 	}
