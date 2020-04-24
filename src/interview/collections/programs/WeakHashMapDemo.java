@@ -27,7 +27,7 @@ class WeakHashMapDemo {
 		System.out.println(m);
 		d = null;
 
-// garbage collector is called
+// garbage collector is called+
 		System.gc();
 
 // thread sleeps for 4 sec
