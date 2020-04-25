@@ -4,34 +4,40 @@ import java.util.Arrays;
 
 public class SelectionSort {
 
-	void sort(int arr[], int n, int index) {
-		// Return when starting and size are the same.
-		if (index == n)
-			return;
-		int k = minIndex(arr, index, n - 1);
-		// swapping with index and minimum index are not same
-		if (k != index) {
-			System.out.println("swap  : " + arr[k] + " "+ arr[index]);
-			int temp = arr[k];
-			arr[k] = arr[index];
-			arr[index] = temp;
-		}
-		System.out.println("Sorted array : " + Arrays.toString(arr));
-		sort(arr, n, index + 1);
+	static int minIndex(int a[], int i, int j) {
+		if (i == j)
+			return i;
+		// Find minimum of remaining elements
+		int k = minIndex(a, i + 1, j);
+		// Return minimum of current and remaining.
+		return (a[i] < a[k]) ? i : k;
 	}
 
-	private int minIndex(int[] arr, int index, int i) {
-		if (index == i)
-			return index;
-		int k = minIndex(arr, index + 1, i);
-		return (arr[index] < arr[k] ? index : k);
+	// Recursive selection sort. n is size of a[] and index
+	// is index of starting element.
+	void sort(int arr[], int size, int index) {
+		// Return when starting and size are the same.
+		if (index == size)
+			return;
+        // calling minimum index function for minimum index 
+		int min_index = minIndex(arr, index, size - 1);
+		// swapping with index and minimum index if they are not same
+		if (min_index != index) {
+			// swap 
+			int temp = arr[min_index];
+			arr[min_index] = arr[index];
+			arr[index] = temp;
+		}
+		// Recursively calling selection sort function
+		sort(arr, size, index + 1);
 	}
 
 	// Driver code to test above
 	public static void main(String args[]) {
 		SelectionSort ob = new SelectionSort();
 		int arr[] = { 64, 25, 12, 22, 11 };
-		ob.sort(arr, arr.length, 0);
+		int min_index = 0; // Bu default always start with 0th index
+		ob.sort(arr, arr.length, min_index);
 		System.out.println("Sorted array : " + Arrays.toString(arr));
 	}
 }
