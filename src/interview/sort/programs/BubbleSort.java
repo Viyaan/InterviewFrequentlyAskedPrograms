@@ -8,7 +8,7 @@ public class BubbleSort {
 		if(length ==1)
 			return;
 		for(int i =0; i <length-1; i++) {
-			if (arr[i].compareTo(arr[i+1]) > 0) {
+			if (arr[i].toLowerCase().compareTo(arr[i+1].toLowerCase()) > 0) {
 				String temp = arr[i];
 				arr[i] = arr[i+1];
 				arr[i+1]= temp;
@@ -36,7 +36,7 @@ public class BubbleSort {
 		sort(arr, arr.length);
 		System.out.println("Sorted array : " + Arrays.toString(arr));
 		
-		String str[] = { "sun", "kite", "rat", "van", "nanny"};
+		String str[] = { "India", "Japan", "Australia", "England", "Brazil"};
 		sortString(str, str.length);
 		System.out.println("Sorted array : " + Arrays.toString(str));
 	}
