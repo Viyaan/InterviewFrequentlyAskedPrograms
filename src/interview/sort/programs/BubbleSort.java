@@ -2,10 +2,10 @@ package interview.sort.programs;
 
 import java.util.Arrays;
 
-public class BubbleSortRecursive {
+public class BubbleSort {
 
 	// A function to implement bubble sort
-	static void bubbleSort(int arr[], int n) {
+	static void sort(int arr[], int n) {
 		// Base case
 		if (n == 1)
 			return;
@@ -19,12 +19,12 @@ public class BubbleSortRecursive {
 				arr[i + 1] = temp;
 			}
 		// Largest element is fixed,recur for remaining array
-		bubbleSort(arr, n - 1);
+		sort(arr, n - 1);
 	}
 	// Driver Method
 	public static void main(String[] args) {
 		int arr[] = { 64, 34, 25, 12, 22, 11, 90 };
-		bubbleSort(arr, arr.length);
+		sort(arr, arr.length);
 		System.out.println("Sorted array : " + Arrays.toString(arr));
 	}
 }
