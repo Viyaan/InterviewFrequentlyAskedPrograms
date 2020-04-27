@@ -33,8 +33,8 @@ class BinarySearch {
 		BinarySearch ob = new BinarySearch();
 		int arr[] = { 2, 3, 4, 10, 40, 40, 78, 89, 90 };
 		int n = arr.length;
-		int x = 40;
-		int result = ob.binarySearch(arr, 0, n - 1, x);
+		int x = 90;
+		int result = ob.binarySearch(arr, 0, n, x);
 		if (result == -1)
 			System.out.println("Element not present");
 		else
