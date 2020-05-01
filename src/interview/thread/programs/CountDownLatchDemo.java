@@ -8,7 +8,6 @@ public class CountDownLatchDemo {
 // wait for four threads before it starts
 		CountDownLatch latch = new CountDownLatch(4);
 
-
 		Worker first = new Worker(1000, latch, "WORKER-1");
 		Worker second = new Worker(2000, latch, "WORKER-2");
 		Worker third = new Worker(3000, latch, "WORKER-3");
@@ -16,11 +15,11 @@ public class CountDownLatchDemo {
 		first.start();
 		second.start();
 		third.start();
-
 		fourth.start();
 
-// The main task waits for four threads latch.await();
-
+// The main task waits for four threads
+		latch.await();
+//Only after all the threads are completed, the below statement wil be processed. 
 // Main thread has started 
 		System.out.println(Thread.currentThread().getName() + " has finished");
 	}
