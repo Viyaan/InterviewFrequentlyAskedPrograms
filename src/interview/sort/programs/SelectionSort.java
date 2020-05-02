@@ -11,6 +11,7 @@ public class SelectionSort {
 		int k = minIndex(a, i + 1, j);
 		// Return minimum of current and remaining.
 		return (a[i] < a[k]) ? i : k;
+		
 	}
 
 	// Recursive selection sort. n is size of a[] and index
