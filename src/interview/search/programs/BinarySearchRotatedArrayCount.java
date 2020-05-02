@@ -23,13 +23,12 @@ public class BinarySearchRotatedArrayCount {
 		// Check if element (mid+1) is minimum
 		// element. Consider the cases like
 		// {3, 4, 5, 1, 2}
-		if (mid < high && arr[mid + 1] < arr[mid])
+		if (arr[mid + 1] < arr[mid])
 			return (mid + 1);
 
 		// Check if mid itself is minimum element
 		// {4 ,5, 1, 2, 3}
-		if (mid > low && arr[mid] < arr[mid - 1])
-
+		if (arr[mid] < arr[mid - 1])
 			return mid;
 
 		// Decide whether we need to go to left
@@ -40,13 +39,13 @@ public class BinarySearchRotatedArrayCount {
 
 		return countRotations(arr, mid + 1, high);
 	}
-	static int minIndex(int a[], int i, int j) {
-		if (i == j)
-			return i;
+	static int minIndex(int a[], int l, int h) {
+		if (l == h)
+			return l;
 		// Find minimum of remaining elements
-		int k = minIndex(a, i + 1, j);
+		int k = minIndex(a, l + 1, h);
 		// Return minimum of current and remaining.
-		return (a[i] < a[k]) ? i : k;
+		return (a[l] < a[k]) ? l : k;
 	}
 
 	// Driver program to test above functions
