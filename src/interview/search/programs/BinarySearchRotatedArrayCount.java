@@ -40,13 +40,25 @@ public class BinarySearchRotatedArrayCount {
 
 		return countRotations(arr, mid + 1, high);
 	}
+	static int minIndex(int a[], int i, int j) {
+		if (i == j)
+			return i;
+		// Find minimum of remaining elements
+		int k = minIndex(a, i + 1, j);
+		// Return minimum of current and remaining.
+		return (a[i] < a[k]) ? i : k;
+	}
 
 	// Driver program to test above functions
 	public static void main(String[] args) {
-		int arr[] = { 15, 18, 2, 3, 6, 12 };
+		int arr[] = { 13, 14, 15, 18, 2, 3, 6, 12 };
 		int n = arr.length;
 
+		//Binary Search way, Time Complexity
 		System.out.println(countRotations(arr, 0, n - 1));
+		
+		//Linear Search way, Time Complexity O(n)
+		System.out.println(minIndex(arr, 0, n - 1));
 	}
 
 }
