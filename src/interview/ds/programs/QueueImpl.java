@@ -1,16 +1,18 @@
 package interview.ds.programs;
 
-
 public class QueueImpl {
-	private int capacity;
-	int queueArr[];
-	int front = 0;
-	int rear = -1;
-	int currentSize = 0;
+	private int capacity; // maximum capacity of the queue
+	int queueArr[]; // array to store queue elements
+	int front; // front points to front element in the queue
+	int rear; // rear points to last element in the queue
+	int currentSize; // current size of the queue
 
 	public QueueImpl(int queueSize) {
 		this.capacity = queueSize;
 		queueArr = new int[this.capacity];
+		front = 0;
+		rear = -1;
+		currentSize = 0;
 	}
 
 	/**
@@ -36,8 +38,7 @@ public class QueueImpl {
 		if (isQueueEmpty()) {
 			System.out.println("Underflow ! Unable to remove element from Queue");
 		} else {
-			front++;
-			System.out.println("Pop operation done ! removed: " + queueArr[front - 1]);
+			System.out.println("Pop operation done ! removed: " + queueArr[front++]);
 			currentSize--;
 		}
 	}
@@ -69,14 +70,41 @@ public class QueueImpl {
 		return status;
 	}
 
-	public static void main(String a[]) {
+	// Utility function to return the size of the queue
+	public int size() {
+		return currentSize;
+	}
 
-		QueueImpl queue = new QueueImpl(2);
-		queue.enqueue(4);
-		queue.enqueue(25);
-		queue.enqueue(56);
-		queue.dequeue();
-		queue.dequeue();
-		queue.dequeue();
+	// Utility function to return front element in the queue
+	public int peek() {
+		if (isQueueEmpty()) {
+			System.out.println("UnderFlow\nProgram Terminated");
+			System.exit(1);
+		}
+		return queueArr[front];
+	}
+
+	// Queue implementation in java
+	public static void main(String[] args) {
+		// create a queue of capacity 5
+		QueueImpl q = new QueueImpl(5);
+
+		q.enqueue(1);
+		q.enqueue(2);
+		q.enqueue(3);
+
+		System.out.println("Front element is: " + q.peek());
+		q.dequeue();
+		System.out.println("Front element is: " + q.peek());
+
+		System.out.println("Queue size is " + q.size());
+
+		q.dequeue();
+		q.dequeue();
+
+		if (q.isQueueEmpty())
+			System.out.println("Queue Is Empty");
+		else
+			System.out.println("Queue Is Not Empty");
 	}
 }
