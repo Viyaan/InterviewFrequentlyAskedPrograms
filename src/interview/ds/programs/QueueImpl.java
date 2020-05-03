@@ -2,10 +2,10 @@ package interview.ds.programs;
 
 public class QueueImpl {
 	private int capacity; // maximum capacity of the queue
-	int queueArr[]; // array to store queue elements
-	int front; // front points to front element in the queue
-	int rear; // rear points to last element in the queue
-	int currentSize; // current size of the queue
+	private int queueArr[]; // array to store queue elements
+	private int front; // front points to front element in the queue
+	private int rear; // rear points to last element in the queue
+	private int currentSize; // current size of the queue
 
 	public QueueImpl(int queueSize) {
 		this.capacity = queueSize;
