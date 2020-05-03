@@ -1,76 +1,98 @@
 package interview.ds.programs;
 
-public class MyStackImpl {
-
-	private int stackSize;
-	private int[] stackArr;
+public class MyStackImpl
+{
+	private int arr[];
 	private int top;
+	private int capacity;
 
-	/**
-	 * constructor to create stack with size
-	 * 
-	 * @param size
-	 */
-	public MyStackImpl(int size) {
-		this.stackSize = size;
-		this.stackArr = new int[stackSize];
-		this.top = -1;
+	// Constructor to initialize stack
+	MyStackImpl(int size)
+	{
+		arr = new int[size];
+		capacity = size;
+		top = -1;
 	}
 
-	/**
-	 * This method adds new entry to the top of the stack
-	 * 
-	 * @param entry
-	 * @throws Exception
-	 */
-	public void push(int entry) throws Exception {
-		if (this.isStackFull()) {
-			throw new Exception("Stack is already full. Can not add element.");
-		}
-		System.out.println("Adding: " + entry);
-		this.stackArr[++top] = entry;
-	}
-
-	/**
-	 * This method removes an entry from the top of the stack.
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public int pop() throws Exception {
-		if (this.isStackEmpty()) {
-			throw new Exception("Stack is empty. Can not remove element.");
+	// Utility function to add an element x in the stack
+	public void push(int x)
+	{
+		if (isFull())
+		{
+			System.out.println("OverFlow\nProgram Terminated\n");
+			System.exit(1);
 		}
 
-		int entry = this.stackArr[top--];
-		System.out.println("Removed entry: " + entry);
-		return entry;
+		System.out.println("Inserting " + x);
+		arr[++top] = x;
 	}
 
-	/**
-	 * This method returns top of the stack without removing it.
-	 * 
-	 * @return
-	 */
-	public int peek() {
-		return stackArr[top];
+	// Utility function to pop top element from the stack
+	public int pop()
+	{
+		// check for stack underflow
+		if (isEmpty())
+		{
+			System.out.println("UnderFlow\nProgram Terminated");
+			System.exit(1);
+		}
+
+		System.out.println("Removing " + peek());
+
+		// decrease stack size by 1 and (optionally) return the popped element
+		return arr[top--];
 	}
 
-	/**
-	 * This method returns true if the stack is empty
-	 * 
-	 * @return
-	 */
-	public boolean isStackEmpty() {
-		return (top == -1);
+	// Utility function to return top element in a stack
+	public int peek()
+	{
+		if (!isEmpty())
+			return arr[top];
+		else
+			System.exit(1);
+
+		return -1;
 	}
 
-	/**
-	 * This method returns true if the stack is full
-	 * 
-	 * @return
-	 */
-	public boolean isStackFull() {
-		return (top == stackSize - 1);
+	// Utility function to return the size of the stack
+	public int size()
+	{
+		return top + 1;
+	}
+
+	// Utility function to check if the stack is empty or not
+	public Boolean isEmpty()
+	{
+		return top == -1;	// or return size() == 0;
+	}
+
+	// Utility function to check if the stack is full or not
+	public Boolean isFull()
+	{
+		return top == capacity - 1;	// or return size() == capacity;
+	}
+
+	public static void main (String[] args)
+	{
+		MyStackImpl stack = new MyStackImpl(3);
+
+		stack.push(1);		// Inserting 1 in the stack
+		stack.push(2);		// Inserting 2 in the stack
+
+		stack.pop();		// removing the top 2
+		stack.pop();		// removing the top 1
+
+		stack.push(3);		// Inserting 3 in the stack
+
+		System.out.println("Top element is: " + stack.peek());
+		System.out.println("Stack size is " + stack.size());
+
+		stack.pop();		// removing the top 3
+
+		// check if stack is empty
+		if (stack.isEmpty())
+			System.out.println("Stack Is Empty");
+		else
+			System.out.println("Stack Is Not Empty");
 	}
 }
