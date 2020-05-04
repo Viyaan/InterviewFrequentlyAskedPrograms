@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -36,21 +37,26 @@ public class SortMapOnValue {
 		Set<Entry<String, Integer>> set = unsortMap.entrySet();
 		List<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(set);
 
-		list.sort(new Comparator<Map.Entry<String, Integer>>() {
-			public int compare(Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-				return (o1.getValue()).compareTo(o2.getValue());
-			}
-		});
+		list.sort((o1, o2) -> o1.getValue().compareTo(o2.getValue()));
 		HashMap<String, Integer> sortedByValueJava5 = new LinkedHashMap<String, Integer>();
 		for (Map.Entry<String, Integer> entry : list) {
 			sortedByValueJava5.put(entry.getKey(), entry.getValue());
 		}
 		System.out.println(sortedByValueJava5);
-		/**************************** Java 8 **************************************/
-		Map<String, Integer> sortedByValueJava8 = unsortMap.entrySet().stream()
+		/**************************** Streams **************************************/
+		Map<String, Integer> sortedByValueStreams = unsortMap.entrySet().stream()
 				.sorted(Map.Entry.comparingByValue(Comparator.naturalOrder())).collect(Collectors.toMap(
 						Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
-		System.out.println(sortedByValueJava8);
+		System.out.println(sortedByValueStreams);
+
+		/**************************** Or More Readable **************************************/
+		LinkedHashMap<String, Integer> linkedHashMap = new LinkedHashMap<String, Integer>();
+
+		unsortMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
+				.forEachOrdered(map -> linkedHashMap.put(map.getKey(), map.getValue()));
+		
+		System.out.println(linkedHashMap);
+
 	}
 
 }
