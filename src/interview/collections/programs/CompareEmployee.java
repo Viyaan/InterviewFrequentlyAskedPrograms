@@ -5,6 +5,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * @author Viyaan
+ * 
+ *         Sort based on first name if its equal sort based on last name it tats
+ *         equal then sort based on department.
+ *
+ */
 public class CompareEmployee {
 
 	public static void main(String args[]) {
@@ -41,13 +48,13 @@ public class CompareEmployee {
 			}
 
 		});
-		
+
 		/* ****************** Streams ************************/
 
 		empLst.stream().sorted(Comparator.comparing(Employee::getFirstName).thenComparing(Employee::getLastName)
 				.thenComparing(Employee::getDepartment));
 		empLst.forEach(x -> System.out.println(x));
-		
+
 		/* ****************** Java 8 ************************/
 
 		empLst.sort((Employee o1, Employee o2) -> {
