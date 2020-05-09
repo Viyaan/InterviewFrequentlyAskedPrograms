@@ -49,14 +49,14 @@ public class CompareEmployee {
 
 		});
 
-		/* ****************** Streams ************************/
-
+		System.out.println("/* ****************** Streams ************************/");
+		
 		empLst.stream().sorted(Comparator.comparing(Employee::getFirstName).thenComparing(Employee::getLastName)
 				.thenComparing(Employee::getDepartment));
 		empLst.forEach(x -> System.out.println(x));
 
 		/* ****************** Java 8 ************************/
-
+		System.out.println("/* ****************** Java 8 ************************/");
 		empLst.sort((Employee o1, Employee o2) -> {
 			if (o1.getFirstName().compareTo(o2.getFirstName()) == 0) {
 				if (o1.getLastName().compareTo(o2.getLastName()) == 0) {
