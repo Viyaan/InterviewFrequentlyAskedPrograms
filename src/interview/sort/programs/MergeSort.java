@@ -1,5 +1,7 @@
 package interview.sort.programs;
 
+import java.util.Arrays;
+
 /* Java program for Merge Sort */
 class MergeSort {
 	// Merges two subarrays of arr[].
@@ -72,25 +74,16 @@ class MergeSort {
 		}
 	}
 
-	/* A utility function to print array of size n */
-	static void printArray(int arr[]) {
-		int n = arr.length;
-		for (int i = 0; i < n; ++i)
-			System.out.print(arr[i] + " ");
-		System.out.println();
-	}
 
 	// Driver method
 	public static void main(String args[]) {
 		int arr[] = { 14, 33, 27, 10, 35, 19, 42, 44 };
 
-		System.out.println("Given Array");
-		printArray(arr);
+		System.out.println("Given array : " + Arrays.toString(arr));
 
 		MergeSort ob = new MergeSort();
 		ob.sort(arr, 0, arr.length - 1);
 
-		System.out.println("\nSorted array");
-		printArray(arr);
+		System.out.println("\nSorted array : " + Arrays.toString(arr));
 	}
 }
